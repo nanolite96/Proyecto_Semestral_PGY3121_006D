@@ -70,21 +70,21 @@
                     <div class="col-12">
                         <h4>Correo Electronico :</h4>
                         <input type="text" id="txtcorreo" name="txtcorreo" placeholder="Ej: Benito.put@Hernandez.com"
-                            size="20" required>
+                            size="20" required title="ingrese un correo válido">
                     </div>
                     <div class="=col-12">
                         <h4>Asunto:</h4>
-                        <textarea name="txtasunt" id="txtasunt" cols="60" rows="10" required
-                            minlength="10" pattern="[A-Za-z ]{10}"
-                            title="Escriba un mìnimo de 10 caracteres">Escriba su duda</textarea>
+                        <input type="text" name="txtasunt" id="txtasunt" placeholder="Escriba su asunto" required
+                            minlength="2" title="ingrese un asunto de 2 letras">
                     </div>
                     <div class="=col-12">
                         <h4>Sugerencia o Inquietud :</h4>
-                        <textarea name="txtsuge" id="txtsuge" cols="60"
-                            rows="4">Ej: Me gusta los trabajos de su empresa</textarea>
+                        <textarea name="txtsuge" id="txtsuge" cols="60" rows="4"
+                            placeholder="Ej: Me gusta los trabajos de su empresa"></textarea>
                     </div>
                     <div class="col-12 py-3">
-                        <a href="index.html"><input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar" value="Enviar"></a>
+                        <a href="index.html"><input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar"
+                                value="Enviar"></a>
                     </div>
                 </form>
             </div>
@@ -107,5 +107,6 @@
     <script src="js/v.js"></script>
     <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/additional-methods.js%22%3E"></script>
 </body>
+<script src="js/v.js"></script>
 
 </html>
