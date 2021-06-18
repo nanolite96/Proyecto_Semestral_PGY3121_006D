@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecanico Rayo Makween</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="fondo">
+    <header>
+        <div class="cabezon">
+            <nav>
+                <label class="img1" for="menu-bar"><img src="{% static 'Img/logomcqueen.png' %}" width="95px" height="80"></label>
+
+                <input type="checkbox" name="" id="menu-bar">
+                <a href="{% url 'INDEX' %}">Inicio</a>
+                <a href="{% url 'ATENCION' %}">Atencion</a>
+                <a href="{% url 'CONTACTO' %}">Formulario</a>
+                <a href="{% url 'REGISTRO' %}">Registro</a>
+            </nav>
+            <p class="buscador">
+                Busqueda de Mecanico: <input type="search" name="Buscar Mecanico" placeholder="Trabajos...">
+                <input type="submit" value="Buscar">
+            </p>
+            <div class="titulo">
+                <h1>Taller Mecanico Rayo Makween </h1>
+            </div>
+        </div>
+    </header>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div id="Galeria">
+        <tr>
+            <td>
+                <img src="img/discos2.jpg" width="300" height="200">
+            </td>
+            <td>
+                <P>Trabajos disco de frenos</P>
+                <p style="float: center;">Trabajo realizado el día 12 de Abril del 2021.
+                    Nuestro cliente sentía que sus discos delanteros no amordazaban correctamente el disco, por lo cual,
+                    decidió taerlo a nuestro taller. Gracias a la gran experiencia de nuestros mecánicos, dimos con la
+                    solución
+                    de cambiar los discos y pinzas del eje delantero.</p>
+                <p>Materiales:</p>
+                <p>Llave Inglesa</p>
+                <p>Pastillas de freno</p>
+                <p>Disco de freno cerámico</p>
+                <p>Resortes</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Validar
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Aceptar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Se ha guardado el post de manera satisfactoria
+                            </div>
+                            <div class="modal-footer">
+                                <a href="validar_post.html"><button type="button"
+                                        class="btn btn-primary">Aceptar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Rechazar
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Explique porque lo rechaza</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <textarea name="Explicacion" id="" cols="30" rows="10" required minlength="30"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <a href="validar_post.html"><button type="button"
+                                        class="btn btn-primary">Aceptar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </div>
+    <footer>
+        <center>
+            <div class="contenedor">
+                <p> Taller Mecanico Rayo Makween </p>
+
+            </div>
+        </center>
+    </footer>
+</body>
+<script src="js/v.js"></script>
+</html>
