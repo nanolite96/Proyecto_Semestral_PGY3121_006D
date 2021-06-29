@@ -62,11 +62,11 @@
         <p></p>
     </div>
     <center>
-        <div class="text-align: center">
-            <form id="login" method="">
+        <div>
+            <form id="login" method="POST">
                 <div class="=col-12">
                     <h4>Correo Electronico :</h4>
-                    <input type="email" id="txtcorreo" name="txtcorreo" placeholder="Ej: Benito.put@Hernandez.com"
+                    <input type="text" id="txtusuario" name="txtcorreo" placeholder="Ej: user name"
                         required>
                 </div>
                 <div class="=col-12">
@@ -80,13 +80,6 @@
             </form>
         </div>
     </center>
-    <footer>
-        <center>
-            <div class="contenedor">
-                <p> Taller Mecanico Rayo Makween </p>
-            </div>
-        </center>
-    </footer>
 </body>
-<script src="js/v.js"></script>
+<script src="{% static 'js/v.js' %}"></script>
 </html>

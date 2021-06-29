@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="text-align: center;">
-                <form id="registro" method="">
+                <form id="registro" action="{% url 'REGITRA' %}" method="POST">
                     <div class="=col-12">
                         <h4>Nombre :</h4>
                         <input type="text" id="txtnombre" name="txtnombre" placeholder="Ej: Benito Hernandez" required
@@ -64,18 +64,17 @@
                             title="solo ingrese texto minimo 3 y maximo 50 caracteres">
                     </div>
                     <div class="=col-12">
-                        <h4>Correo Electronico :</h4>
-                        <input type="email" id="txtcorreo" name="txtcorreo" placeholder="Ej: Benito.put@Hernandez.com"
-                            required>
+                        <h4>Descripción :</h4>
+                        <textarea name="txtdesc" id="txtdesc" cols="60" rows="4"
+                            placeholder="Escriba la descripción del trabajo"></textarea>
                     </div>
                     <div class="=col-12">
-                        <h4>Contraseña :</h4>
-                        <input type="password" id="txtcontra" name="txtcontra" placeholder="Ej: *****" required
-                            minlength="8">
+                        <h4>Materiales :</h4>
+                        <textarea name="txtmate" id="txtmate" cols="3p" rows="4"
+                            placeholder="Escriba los materiales usados"></textarea>
                     </div>
                     <div class="col-12 py-3">
                         <input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar" value="Registrar" onclick="enviar()">
-
                     </div>
                 </form>
             </div>

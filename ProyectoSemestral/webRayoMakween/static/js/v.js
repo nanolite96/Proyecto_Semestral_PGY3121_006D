@@ -6,9 +6,8 @@ $(function(){
                 minlength:2
 
             },
-            txtcorreo:{
-                required:true,
-                email:true
+            txtusuario:{
+                required:true
                 
             },
             txtasunto:{
@@ -23,9 +22,8 @@ $(function(){
                 required:"Este Campo es obligatorio",
                 minlength:"No cumple con los caracteres definidos(2)"
                 
-            },txtcorreo:{
-                required:"Este Campo es obligatorio",
-                email:"No cumple con el formato de un email"
+            },txtusuario:{
+                required:"Este Campo es obligatorio"
             },txtasunto:{
                 required:"Este Campo es obligatorio"
             },txtsuge:{
@@ -76,9 +74,8 @@ $(function(){
 $(function(){
     $("#login").validate({
         rules:{
-            txtcorreo:{
+            txtusuario:{
                 required:true,
-                email:true
                 
             },
             txtcontra:{
@@ -87,7 +84,6 @@ $(function(){
         },messages:{
             txtcorreo:{
                 required:"Este Campo es obligatorio",
-                email:"No cumple con el formato de un email"
             },txtcontra:{
                 required:"Este Campo es obligatorio"
             }
