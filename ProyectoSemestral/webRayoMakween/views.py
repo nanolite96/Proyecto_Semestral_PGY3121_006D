@@ -1,3 +1,4 @@
+from typing import ContextManager
 from django.contrib import auth
 from django.db import models
 from django.shortcuts import render
@@ -30,11 +31,21 @@ def validar(request):
 
 def regitra(request):
     trabajos = Trabajos.objects.all()
-    context = {Trabajos:trabajos}
-    if request.POST
-        nombre =request.POST.get("txtNombre")
+    contexto = {"Trabajos":trabajos}
+    if request.POST:
+        nombre = request.POST.get("txtNombre")
         descripcion = request.POST.get("txtdesc")
-    return render(request,"registro_trabajo.html")
+        materiales = request.POST.get("txtmate")
+
+        tra = trabajos(
+            nombre=nombre,
+            descripcion=descripcion,
+            materiales=materiales
+        )
+        tra.save()
+        contexto = {"trabajos":trabajos,"mensaje":"grabo"}
+
+    return render(request,"registro_trabajo.html",contexto)
 
 def inicio(request):
     mensaje=" "

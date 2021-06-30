@@ -57,9 +57,10 @@
             </div>
             <div class="text-align: center;">
                 <form id="registro" action="{% url 'REGITRA' %}" method="POST">
+                    {% csrf_token %}
                     <div class="=col-12">
                         <h4>Nombre :</h4>
-                        <input type="text" id="txtnombre" name="txtnombre" placeholder="Ej: Benito Hernandez" required
+                        <input type="text" id="txtnombre" name="txtnombre" placeholder="Liste aquí su trabajo" required
                             minlength="3" maxlength="50" pattern="[A-Za-z ]{3,50}"
                             title="solo ingrese texto minimo 3 y maximo 50 caracteres">
                     </div>
@@ -70,13 +71,16 @@
                     </div>
                     <div class="=col-12">
                         <h4>Materiales :</h4>
-                        <textarea name="txtmate" id="txtmate" cols="3p" rows="4"
+                        <textarea name="txtmate" id="txtmate" cols="30" rows="6"
                             placeholder="Escriba los materiales usados"></textarea>
                     </div>
                     <div class="col-12 py-3">
-                        <input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar" value="Registrar" onclick="enviar()">
+                        <input type="submit" class="btn btn-dark" id="=btn-registrar" name="btn-registrar" value="Registrar" onclick="enviar()">
                     </div>
                 </form>
+                <div>
+                    <h1>{{mensaje}}</h1>
+                </div>
             </div>
         </div>
     </center>
