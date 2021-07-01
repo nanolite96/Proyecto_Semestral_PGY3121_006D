@@ -47,8 +47,9 @@ def validar(request):
     return render(request,"validar_post.html")
 
 def regitra(request):
+    mensaje = ""
     trabajos = Trabajos.objects.all()
-    context = {"Trabajos":trabajos}
+    contexto = {"Trabajos":trabajos}
     if request.POST:
         nombre = request.POST.get("txtnombre")
         descripcion = request.POST.get("txtdesc")
@@ -60,9 +61,10 @@ def regitra(request):
             materiales=materiales
         )
         tra.save()
+        mensaje="Trabajo registrado"
 
-    context = {"Trabajos":trabajos,"mensaje":"Trabajo registrado"}
-    return render(request,"registro_trabajo.html",context)
+    contexto = {"mensaje":mensaje}
+    return render(request,"registro_trabajo.html",contexto)
 
 def inicio(request):
     mensaje=" "
