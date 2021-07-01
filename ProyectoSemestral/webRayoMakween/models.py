@@ -4,9 +4,8 @@ from django.db import models
 
 class Trabajos (models.Model):
     nombre = models.CharField(primary_key=True,max_length=20)
-    descripcion = models.CharField(max_length=200)
-    materiales = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    materiales = models.TextField()
 
     def __str__(self):
         return self.nombre
-

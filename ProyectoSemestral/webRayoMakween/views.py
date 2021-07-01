@@ -21,7 +21,24 @@ def contacto(request):
     return render(request,"Formulario_contacto.html")
 
 def registro(request):
-    return render(request,"registro.html")
+    mensaje=""
+    if request.POST:
+        usuario = request.POST.get("txtusuario")
+        nombre = request.POST.get("txtnombre")
+        correo = request.POST.get("txtcorreo")
+        pass1 = request.POST.get("txtPass1")
+
+        usu = User()
+        usu.username = usuario
+        usu.first_name = nombre
+        usu.email = correo
+        usu.set_password(pass1)
+        usu.save()
+
+        mensaje="Usuario Grabado"
+
+    contexto = {"mensaje":mensaje}
+    return render(request,"registro.html",contexto)
 
 def trabajo(request):
     return render(request,"trabajos.html")
@@ -31,9 +48,9 @@ def validar(request):
 
 def regitra(request):
     trabajos = Trabajos.objects.all()
-    contexto = {"Trabajos":trabajos}
+    context = {"Trabajos":trabajos}
     if request.POST:
-        nombre = request.POST.get("txtNombre")
+        nombre = request.POST.get("txtnombre")
         descripcion = request.POST.get("txtdesc")
         materiales = request.POST.get("txtmate")
 
@@ -43,9 +60,9 @@ def regitra(request):
             materiales=materiales
         )
         tra.save()
-        contexto = {"trabajos":trabajos,"mensaje":"grabo"}
 
-    return render(request,"registro_trabajo.html",contexto)
+    context = {"Trabajos":trabajos,"mensaje":"Trabajo registrado"}
+    return render(request,"registro_trabajo.html",context)
 
 def inicio(request):
     mensaje=" "
