@@ -39,7 +39,7 @@ def registro(request):
 
 def trabajo(request):
     return render(request,"trabajos.html")
-    
+
 @login_required(login_url='/login/')
 def validar(request):
     trabajos = Trabajos.objects.all()
@@ -116,7 +116,7 @@ def listra(request):
     return render(request, "listrado.html",contexto)
 
 @login_required(login_url='/login/')
-@permission_required('webRayoMakween.delete_trabajos',nlogin_url='/login/')
+@permission_required('webRayoMakween.delete_trabajos',login_url='/login/')
 def eliminar(request, id):
     try:
         tra = Trabajos.objects.get(nombre=id)
