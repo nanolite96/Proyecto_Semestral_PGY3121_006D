@@ -120,6 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+import os #importar libreria de uso del sistema operativo
+MEDIA_URL = '/media/' # nombre de la carpeta
+MEDIA_ROOT = os.path.join(BASE_DIR,'media') # ubicacion carpeta MEDIA
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

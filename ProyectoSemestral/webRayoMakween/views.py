@@ -3,11 +3,11 @@ from django.contrib import auth
 from django.db import models
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as login_aut
-from django.contrib.auth.decorators import login_required
-from .models import Trabajos
+from django.contrib.auth.decorators import login_required, permission_required
+from .models import Trabajos,mecanico,comentario
 
 # Create your views here.
 
@@ -16,9 +16,6 @@ def index(request):
 
 def atencion(request):
     return render(request,"Atencion.html")
-
-def contacto(request):
-    return render(request,"Formulario_contacto.html")
 
 def registro(request):
     mensaje=""
@@ -42,29 +39,61 @@ def registro(request):
 
 def trabajo(request):
     return render(request,"trabajos.html")
-
+    
+@login_required(login_url='/login/')
 def validar(request):
-    return render(request,"validar_post.html")
+    trabajos = Trabajos.objects.all()
+    contexto = {"Trabajos":trabajos}
+    return render(request,"validar_post.html",contexto)
 
+@login_required(login_url='/login/')
+@permission_required('webRayoMakween.add_trabajos')
 def regitra(request):
     mensaje = ""
     trabajos = Trabajos.objects.all()
     contexto = {"Trabajos":trabajos}
     if request.POST:
+        diagnostico = request.POST.get("txtdiag")
         nombre = request.POST.get("txtnombre")
-        descripcion = request.POST.get("txtdesc")
+        fecha = request.POST.get("txtfecha")
         materiales = request.POST.get("txtmate")
+        categoria = request.POST.get("txtcategoria")
+        imagen= request.POST.get("txtimagen")
 
         tra = trabajos(
+            diagnostico=diagnostico,
             nombre=nombre,
-            descripcion=descripcion,
-            materiales=materiales
+            fecha=fecha,
+            materiales=materiales,
+            categoria=categoria,
+            imagen=imagen
         )
         tra.save()
         mensaje="Trabajo registrado"
 
     contexto = {"mensaje":mensaje}
     return render(request,"registro_trabajo.html",contexto)
+
+def regico(request):
+    mensaje = ""
+    comentarios = comentario.objects.all()
+    contexto = {"Trabajos":comentarios}
+    if request.POST:
+        nombre_cl=request.POST.get("txtnombre")
+        correo=request.POST.get("txtcorreo")
+        asunto=request.POST.get("txtasunt")
+        sugerencia=request.POST.get("txtsuge")
+        com = comentarios(
+            nombre_cl=nombre_cl,
+            correo=correo,
+            asunto=asunto,
+            sugerencia=sugerencia
+        )
+        com.save()
+        mensaje="Trabajo registrado"
+
+    contexto = {"mensaje":mensaje}
+    return render(request,"Formulario_contacto.html",contexto)
 
 def inicio(request):
     mensaje=" "
@@ -78,3 +107,25 @@ def inicio(request):
             mensaje="no existe usuario o contraseña incorrecta"
     contexto={"mensaje":mensaje}
     return render(request,"login.html",contexto)
+
+@login_required(login_url='/login/')
+@permission_required('webRayoMakween.view_trabajos')
+def listra(request):
+    trabajos = Trabajos.objects.all()
+    contexto ={"trabajo":trabajos}
+    return render(request, "listrado.html",contexto)
+
+@login_required(login_url='/login/')
+@permission_required('webRayoMakween.delete_trabajos',nlogin_url='/login/')
+def eliminar(request, id):
+    try:
+        tra = Trabajos.objects.get(nombre=id)
+        tra.delete()
+        mensaje = "Trabajo rechazado"
+    except:
+        mensaje = ""
+
+    contexto = {"mensaje":mensaje}
+    return render(request,"validar_post.html",contexto)
+
+    
