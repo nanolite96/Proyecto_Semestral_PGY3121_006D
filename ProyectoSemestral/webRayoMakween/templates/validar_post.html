@@ -116,12 +116,15 @@
 {% block js %}
     <script>
         function eliminar(nombre) {
-            var opcion= confirm("Quiere eliminar el trabajo "+nombre+" ?");
+            var opcion= <textarea name="txtsuge" id="txtsuge" cols="20" rows="2"
+                    placeholder="Explique por qué"></textarea>;
                 if (opcion==true) {
-                    alert("Explique el motivo")
+                    location.href='/eliminar/'+nombre+'/';
+                }else{
+                    alert("Operación cancelada")
+                    }
                 }
             alert("Eliminar el trabajo "+nombre);
-        }
     </script>
 <script src="{% static 'js/v.js' %}"></script>
 </html>
