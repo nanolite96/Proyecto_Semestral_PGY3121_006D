@@ -37,8 +37,11 @@
                 <a href="{% url 'LISTRA' %}">Lista de trabajos</a>
             </nav>
             <p class="buscador">
-                Busqueda de Mecanico: <input type="search" name="Buscar Mecanico" placeholder="Trabajos...">
+            <form action="{% url 'TRABAJO' %}" method="POST">
+            {% csrf_token %}
+                Busqueda de Trabajo: <input type="search" name="txtTrabajo" placeholder="Trabajos...">
                 <input type="submit" value="Buscar">
+              </form>
             </p>
             <div class="titulo">
                 <h1>Taller Mecanico Rayo Makween </h1>
@@ -67,59 +70,19 @@
 
 
   <table class="tabla">
+    {% for reg in listaTrabajo %}
     <tr>
       <td>
-        <img src="{% static 'img/discos2.jpg' %}" width="600" height="500">
+        <img src="{{reg.imagen.url}}" width="600" height="500">
       </td>
       <td>
-        <h3>Trabajo de disco de frenos</h3>
-        <p>
-          Trabajo realizado el día 12 de Abril del 2021.
-          Nuestro cliente sentía que sus discos delanteros no amordazaban correctamente el disco, por lo cual,
-          decidió taerlo a nuestro taller. Gracias a la gran experiencia de nuestros mecánicos, dimos con la
-          solución
-          de cambiar los discos y pinzas del eje delantero.</p>
-        <p>Materiales:</p>
-        <p>Llave Inglesa</p>
-        <p>Pastillas de freno</p>
-        <p>Disco de freno cerámico</p>
-        <p>Resortes</p>
+        <h3>{{reg.diagnostico}}</h3>
+        <p>{{reg.descripcion}}</p>
+        <p>{{reg.fecha}}</p>
+        <p>{{reg.materiales}}</p>
       </td>
     </tr>
-
-    <tr>
-      <td><img src="{% static 'img/pintor-automotriz-en-peru.jpg' %}" width="600" height="500"></td>
-      <td>
-        <h3>Trabajo de pintura</h3>
-        <p>
-          Trabajo realizado el día 3 de Marzo del 2021.
-          En la tarde, llegò un auto con pintura corroida con un cliente que buscaba renovar su auto de manera
-          que quedara "bellìsimo para rodar". Nuestros expertos han seleccionado entre una amalgama de colores
-          el màs atractivo para nuestro cliente, y quedò sumamente satisfecho con el resultado.
-        </p>
-        <p>Materiales:</p>
-        <p>Pistola a presiòn de pintura</p>
-        <p>Tarro de pintura</p>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td><img src="{% static 'img/aceite2.jpg' %}" width="600" height="500"></td>
-      <td>
-        <h3>Trabajo de aceite</h3>
-        <p>
-          Trabajo realizado el día 12 de Abril del 2021.
-          Nuestro cliente sentía que sus discos delanteros no amordazaban correctamente el disco, por lo cual,
-          decidió taerlo a nuestro taller. Gracias a la gran experiencia de nuestros mecánicos, dimos con la
-          solución
-          de cambiar los discos y pinzas del eje delantero.</p>
-        <p>Materiales:</p>
-        <p>Llave Inglesa</p>
-        <p>Pastillas de freno</p>
-        <p>Disco de freno cerámico</p>
-        <p>Resortes</p>
-      </td>
-    </tr>
+    {% endfor %}
   </table>
   <footer>
     <center>

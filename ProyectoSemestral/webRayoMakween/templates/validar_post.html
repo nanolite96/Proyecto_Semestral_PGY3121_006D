@@ -35,10 +35,14 @@
                 <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
                 <a href="{% url 'REGITRA' %}">Registro Atencion</a>
                 <a href="{% url 'LISTRA' %}">Lista de trabajos</a>
+                <a href="{% url 'VALIDAR' %}">Validar Post</a>
             </nav>
             <p class="buscador">
-                Busqueda de Mecanico: <input type="search" name="Buscar Mecanico" placeholder="Trabajos...">
+            <form action="{% url 'TRABAJO' %}" method="POST">
+            {% csrf_token %}
+                Busqueda de Trabajo: <input type="search" name="txtTrabajo" placeholder="Trabajos...">
                 <input type="submit" value="Buscar">
+              </form>
             </p>
             <div class="titulo">
                 <h1>Taller Mecanico Rayo Makween </h1>
@@ -64,10 +68,9 @@
                     <th>nombre</th>
                     <th>fecha</th>
                     <th>materiales</th>
-                    <th>categoria</th>
+                    <th>descripcion</th>
                     <th>imagen</th>
-                </tr>
-                    
+                </tr>     
             {%for x in contexto%}
                 <tr>
                     <td>
@@ -87,7 +90,7 @@
                     </td>
 
                     <td>
-                        {{x.categoria}}
+                        {{x.descripcion}}
                     </td>
                     <td>
                         {%if x.imagen%}
@@ -96,6 +99,9 @@
                     </td>
                     <td>
                         <button class= "btn btn-success">Aceptar</button>
+                    </td>
+                    <td>
+                        <button class= "btn btn-alert">Modificar</button>
                     </td>
                     <td>
                         <button class= "btn btn-danger" onclick="eliminar('{{x.nombre}}')">Rechazar</button>
@@ -108,16 +114,15 @@
         <center>
             <div class="contenedor">
                 <p> Taller Mecanico Rayo Makween </p>
-
             </div>
         </center>
     </footer>
 </body>
+
 {% block js %}
     <script>
         function eliminar(nombre) {
-            var opcion= <textarea name="txtsuge" id="txtsuge" cols="20" rows="2"
-                    placeholder="Explique por qué"></textarea>;
+            var opcion= "Seguro que quiere eliminar?";
                 if (opcion==true) {
                     location.href='/eliminar/'+nombre+'/';
                 }else{
@@ -127,4 +132,6 @@
             alert("Eliminar el trabajo "+nombre);
     </script>
 <script src="{% static 'js/v.js' %}"></script>
+{% endblock %}
+
 </html>

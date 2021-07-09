@@ -1,13 +1,14 @@
 from typing import ContextManager
 from django.contrib import auth
 from django.db import models
+from django.http import request
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as login_aut
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Trabajos,mecanico,comentario
+from .models import Trabajos,mecanico,contacto
 
 # Create your views here.
 
@@ -38,7 +39,12 @@ def registro(request):
     return render(request,"registro.html",contexto)
 
 def trabajo(request):
-    return render(request,"trabajos.html")
+    listaTrabajo=[]
+    if request.POST:
+        trabajo=request.POST.get("txtTrabajo")
+        listaTrabajo=Trabajos.objects.filter(diagnostico__contains=trabajo)
+    contexto={"listaTrabajo":listaTrabajo}
+    return render(request,"trabajos.html",contexto)
 
 @login_required(login_url='/login/')
 def validar(request):
@@ -76,7 +82,7 @@ def regitra(request):
 
 def regico(request):
     mensaje = ""
-    comentarios = comentario.objects.all()
+    comentarios = contacto.objects.all()
     contexto = {"Trabajos":comentarios}
     if request.POST:
         nombre_cl=request.POST.get("txtnombre")

@@ -37,8 +37,11 @@
                 <a href="{% url 'LISTRA' %}">Lista de trabajos</a>
             </nav>
             <p class="buscador">
-                Busqueda de Mecanico: <input type="search" name="Buscar Mecanico" placeholder="Trabajos...">
+            <form action="{% url 'TRABAJO' %}" method="POST">
+            {% csrf_token %}
+                Busqueda de Trabajo: <input type="search" name="txtTrabajo" placeholder="Trabajos...">
                 <input type="submit" value="Buscar">
+              </form>
             </p>
             <div class="titulo">
                 <h1>Taller Mecanico Rayo Makween </h1>
@@ -58,7 +61,7 @@
                         <th>nombre</th>
                         <th>fecha</th>
                         <th>materiales</th>
-                        <th>categoria</th>
+                        <th>descripcion</th>
                         <th>imagen</th>
                     </tr>
                     
@@ -81,7 +84,7 @@
                         </td>
 
                         <td>
-                            {{x.categoria}}
+                            {{x.descripcion}}
                         </td>
                         <td>
                             {%if x.imagen%}

@@ -37,8 +37,11 @@
                 <a href="{% url 'LISTRA' %}">Lista de trabajos</a>
             </nav>
             <p class="buscador">
-                Busqueda de Mecanico: <input type="search" name="Buscar Mecanico" placeholder="Trabajos...">
+            <form action="{% url 'TRABAJO' %}" method="POST">
+            {% csrf_token %}
+                Busqueda de Trabajo: <input type="search" name="txtTrabajo" placeholder="Trabajos...">
                 <input type="submit" value="Buscar">
+              </form>
             </p>
             <div class="titulo">
                 <h1>Taller Mecanico Rayo Makween </h1>
@@ -83,7 +86,7 @@
                         <textarea name="txtmate" id="txtmate" cols="30" rows="6"
                             placeholder="Escriba los materiales usados"></textarea>
                     </div><div class="=col-12">
-                        <h4>Categoria :</h4>
+                        <h4>Descripcion :</h4>
                         <input type="text" id="txtcategoria" name="txtcategoria" placeholder="Liste aquí la Categoria" required
                             minlength="3" maxlength="50" pattern="[A-Za-z ]{3,50}"
                             title="solo ingrese texto minimo 3 y maximo 50 caracteres">
