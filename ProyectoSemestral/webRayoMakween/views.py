@@ -39,6 +39,7 @@ def registro(request):
     return render(request,"registro.html",contexto)
 
 def trabajo(request):
+    listaTrabajo = Trabajos.objects.filter(publicar=True)
     listaTrabajo=[]
     if request.POST:
         trabajo=request.POST.get("txtTrabajo")
@@ -56,14 +57,14 @@ def validar(request):
 @permission_required('webRayoMakween.add_trabajos')
 def regitra(request):
     mensaje = ""
-    trabajos = Trabajos.objects.all()
+    trabajos = Trabajos.objects.filter(publicar=True)
     contexto = {"Trabajos":trabajos}
     if request.POST:
         diagnostico = request.POST.get("txtdiag")
         nombre = request.POST.get("txtnombre")
         fecha = request.POST.get("txtfecha")
         materiales = request.POST.get("txtmate")
-        categoria = request.POST.get("txtcategoria")
+        descripcion = request.POST.get("txtdescripcion")
         imagen= request.POST.get("txtimagen")
 
         tra = trabajos(
@@ -71,7 +72,7 @@ def regitra(request):
             nombre=nombre,
             fecha=fecha,
             materiales=materiales,
-            categoria=categoria,
+            descripcion=descripcion,
             imagen=imagen
         )
         tra.save()

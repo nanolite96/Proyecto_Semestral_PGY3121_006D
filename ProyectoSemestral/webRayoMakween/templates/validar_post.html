@@ -64,12 +64,13 @@
     <div class="col-5">
             <table class=" table">
                 <tr>
-                    <th>diagnostico</th>
-                    <th>nombre</th>
-                    <th>fecha</th>
-                    <th>materiales</th>
-                    <th>descripcion</th>
-                    <th>imagen</th>
+                    <th>Diagnostico</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Materiales</th>
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                    <th>Comentario</th>
                 </tr>     
             {% for reg in listaTrabajo %}
                 <tr>
@@ -90,7 +91,7 @@
                     </td>
 
                     <td>
-                        {{x.descripcion}}
+                        {{reg.descripcion}}
                     </td>
                     <td>
                         {%if x.imagen%}
@@ -98,13 +99,13 @@
                         {% endif %}
                     </td>
                     <td>
-                        <button class= "btn btn-success">Aceptar</button>
+                        {{reg.comentario}}
                     </td>
                     <td>
-                        <button class= "btn btn-alert">Modificar</button>
+                        <button class= "btn btn-alert" onclick="modificar('{{reg.diagnostico}}')">Modificar</button>
                     </td>
                     <td>
-                        <button class= "btn btn-danger" onclick="eliminar('{{x.nombre}}')">Rechazar</button>
+                        <button class= "btn btn-danger" onclick="eliminar('{{reg.diagnostico}}')">Rechazar</button>
                     </td>
                 </tr>
             {% endfor %}
@@ -121,15 +122,16 @@
 
 {% block js %}
     <script>
-        function eliminar(nombre) {
+        function eliminar(diagnostico) {
             var opcion= "Seguro que quiere eliminar?";
                 if (opcion==true) {
-                    location.href='/eliminar/'+nombre+'/';
+                    location.href='/eliminar/'+diagnostico+'/';
+                    alert("Trabajo Eliminado")
                 }else{
                     alert("Operación cancelada")
                     }
                 }
-            alert("Eliminar el trabajo "+nombre);
+            alert("Eliminar el trabajo "+diagnostico);
     </script>
 <script src="{% static 'js/v.js' %}"></script>
 {% endblock %}
