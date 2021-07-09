@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="text-align: center;">
-                <form id="formula1" method="POST">
+                <form id="formula1" action="{% url 'CONTACTO' %}" method="POST">
                     {% csrf_token %}
                     <div class="=col-12">
                         <h4>Nombre :</h4>
@@ -88,11 +88,13 @@
                             placeholder="Ej: Me gusta los trabajos de su empresa"></textarea>
                     </div>
                     <div class="col-12 py-3">
-                        <a href="{% url 'INDEX' %}"><input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar"
-                                value="Enviar"></a>
+                        <input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar" value="Registrar" onclick="enviar()">
                     </div>
                 </form>
             </div>
+        </div>
+        <div style="text-align: center;font-size: large;">
+            {{mensaje}}
         </div>
     </center>
     <footer>

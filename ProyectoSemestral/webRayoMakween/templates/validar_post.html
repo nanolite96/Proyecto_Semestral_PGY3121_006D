@@ -71,22 +71,22 @@
                     <th>descripcion</th>
                     <th>imagen</th>
                 </tr>     
-            {%for x in contexto%}
+            {% for reg in listaTrabajo %}
                 <tr>
                     <td>
-                        {{x.diagnostico}}
+                        {{reg.diagnostico}}
                     </td>
                     
                     <td>
-                        {{x.nombre}}
+                        {{reg.nombre}}
                     </td>
                         
                     <td>
-                        {{x.fecha}}
+                        {{reg.fecha}}
                     </td>
 
                     <td>
-                        {{x.materiales}}
+                        {{reg.materiales}}
                     </td>
 
                     <td>

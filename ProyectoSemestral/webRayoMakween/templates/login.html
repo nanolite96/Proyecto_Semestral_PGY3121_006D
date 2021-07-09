@@ -33,7 +33,7 @@
                 <a href="{% url 'REGISTRO' %}">Registro</a>
                 <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
                 <a href="{% url 'REGITRA' %}">Registro Atencion</a>
-                <a href="{% url 'LISTRA' %}">Lista de trabajos</a>
+                <a href="{% url 'TRABAJO' %}">Lista de trabajos</a>
             </nav>
             <p class="buscador">
             <form action="{% url 'TRABAJO' %}" method="POST">
@@ -68,7 +68,8 @@
     </div>
     <center>
         <div>
-            <form id="login" method="POST">
+            <form id="login" action= "{% url 'INICIO' %}" method="POST">
+                {% csrf_token %}
                 <div class="=col-12">
                     <h4>Correo Electronico :</h4>
                     <input type="email" id="txtusuario" name="txtcorreo" placeholder="Ej: user name"
@@ -80,7 +81,7 @@
                         minlength="8">
                 </div>
                 <div class="col-12 py-3">
-                    <a href="{% url 'VALIDAR' %}"><input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar" value="Ingresar"></a>
+                    <a href="{% url 'INDEX' %}"><input type="submit" class="btn btn-dark" id="=btnenviar" name="btnenviar" value="Ingresar"></a>
                 </div>
             </form>
         </div>
