@@ -9,11 +9,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as login_aut
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Trabajos,mecanico,contacto
+import requests
 
 # Create your views here.
 
 def index(request):
-    return render(request,"index.html")
+    trabajos = Trabajos.objects.filter(publicar=True)
+    contexto = {"trabajos":trabajos}
+    contactos = contacto.objects.all()
+    contexto = {"contactos":contactos}
+    response = requests.get("http://127.0.0.1:8000/api/trabajos/")
+    contexto["trabajos_api"] = response.json()
+    response = requests.get("http://127.0.0.1:8000/api/contactos/")
+    contexto["contactos_api"] = response.json()
+    return render(request,"index.html",contexto)
 
 def atencion(request):
     return render(request,"Atencion.html")
@@ -178,4 +187,4 @@ def modificar(request):
             mensaje="No se ha modificado datos"
 
     contexto = {"mensaje":mensaje}
-    return render(request,"registro_trabajo.html",contexto)
+    return render(request,"validar_post.html",contexto)

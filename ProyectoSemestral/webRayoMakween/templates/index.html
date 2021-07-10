@@ -83,6 +83,42 @@
             maxime praesentium eius alias laborum placeat cumque laboriosam, deleniti ipsam nostrum voluptatum
             repudiandae, odit perferendis voluptas.</p>
     </center>
+    <section style="float: center;">
+        <h1>Trabajos hechos</h1>
+        <table>
+            <tr>
+                <td>Trabajo</td>
+                <td>Fecha</td>
+                <td>Nombre</td>
+            </tr>
+
+            {% for reg in trabajos_api %}
+            <tr>
+                <td>{{reg.descripcion}}</td>
+                <td>{{reg.fecha}}</td>
+                <td>{{reg.nombre}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section style="float: center;">
+        <h1>Comentarios</h1>
+        <table>
+            <tr>
+                <td>Nombre</td>
+                <td>Asunto</td>
+                <td>Comentario</td>
+            </tr>
+
+            {% for reg in contactos_api %}
+            <tr>
+                <td>{{reg.nombre_cl}}</td>
+                <td>{{reg.asunto}}</td>
+                <td>{{reg.sugerencia}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
     <footer>
         <center>
             <div class="contenedor">
