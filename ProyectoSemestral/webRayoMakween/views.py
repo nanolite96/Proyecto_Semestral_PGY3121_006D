@@ -61,11 +61,11 @@ def regitra(request):
     contexto = {"Trabajos":trabajos}
     if request.POST:
         diagnostico = request.POST.get("txtdiag")
-        nombre = request.POST.get("txtnombre")
+        nombre = request.objects.get("txtnombre")
         fecha = request.POST.get("txtfecha")
         materiales = request.POST.get("txtmate")
         descripcion = request.POST.get("txtdescripcion")
-        imagen= request.POST.get("txtimagen")
+        imagen= request.FILES.get("txtimagen")
 
         tra = trabajos(
             diagnostico=diagnostico,
@@ -152,7 +152,7 @@ def modificar(request):
     mensaje=""
     if request.POST:
         diagnostico = request.POST.get("txtdiag")
-        nombre = request.POST.get("txtnombre")
+        nombre = request.objects.get("txtnombre")
         fecha = request.POST.get("txtfecha")
         materiales = request.POST.get("txtmate")
         descripcion = request.POST.get("txtdescripcion")
