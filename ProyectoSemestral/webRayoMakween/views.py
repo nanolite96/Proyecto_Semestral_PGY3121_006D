@@ -126,7 +126,7 @@ def listra(request):
 @permission_required('webRayoMakween.delete_trabajos',login_url='/login/')
 def eliminar(request, id):
     try:
-        tra = Trabajos.objects.get(nombre=id)
+        tra = Trabajos.objects.get(diagnostico=id)
         tra.delete()
         mensaje = "Trabajo rechazado"
     except:
@@ -135,4 +135,43 @@ def eliminar(request, id):
     contexto = {"mensaje":mensaje}
     return render(request,"validar_post.html",contexto)
 
-    
+@login_required(login_url='/login/')
+def buscar_modificar(request, id):
+    try:
+        tra = Trabajos.objects.get(diagnostico=id)
+        contexto = {Trabajos:tra}
+        return render(request,"modificar.html",contexto)
+    except:
+        mensaje = "No existe trabajo"
+
+    contexto = {"mensaje":mensaje}
+    return render(request,"validar_post.html",contexto)
+
+def modificar(request):
+    trabajos=Trabajos.objects.all()
+    mensaje=""
+    if request.POST:
+        diagnostico = request.POST.get("txtdiag")
+        nombre = request.POST.get("txtnombre")
+        fecha = request.POST.get("txtfecha")
+        materiales = request.POST.get("txtmate")
+        descripcion = request.POST.get("txtdescripcion")
+        imagen= request.FILES.get("txtimagen")
+
+        try:
+            tra = Trabajos.objects.get(diagnostico=diagnostico)
+            tra.diagnostico=diagnostico,
+            tra.nombre=nombre,
+            tra.fecha=fecha,
+            tra.materiales=materiales,
+            tra.descripcion=descripcion,
+            if imagen is not None:
+                imagen=imagen
+            tra.comentario= '//'
+            tra.save()
+            mensaje="Datos modificados"
+        except:
+            mensaje="No se ha modificado datos"
+
+    contexto = {"mensaje":mensaje}
+    return render(request,"registro_trabajo.html",contexto)

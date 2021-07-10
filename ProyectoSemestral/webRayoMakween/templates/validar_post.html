@@ -72,7 +72,7 @@
                     <th>Imagen</th>
                     <th>Comentario</th>
                 </tr>     
-            {% for reg in listaTrabajo %}
+            {% for reg in trabajos %}
                 <tr>
                     <td>
                         {{reg.diagnostico}}
@@ -94,7 +94,7 @@
                         {{reg.descripcion}}
                     </td>
                     <td>
-                        {%if x.imagen%}
+                        {%if reg.imagen%}
                         <img src="{{x.imagen.url}}" alt="imgnula" width="50" height="50">
                         {% endif %}
                     </td>
@@ -102,7 +102,10 @@
                         {{reg.comentario}}
                     </td>
                     <td>
-                        <button class= "btn btn-alert" onclick="modificar('{{reg.diagnostico}}')">Modificar</button>
+                        <button class= "btn btn-warning">Modificar</button>
+                    </td>
+                    <td>
+                        <button class= "btn btn-warning" onclick="modificar('{{reg.diagnostico}}')">Modificar</button>
                     </td>
                     <td>
                         <button class= "btn btn-danger" onclick="eliminar('{{reg.diagnostico}}')">Rechazar</button>
@@ -122,6 +125,9 @@
 
 {% block js %}
     <script>
+        function buscar_modificar(diagnostico) {
+            location.href='/modificar/'+diagnostico+'/'
+        }
         function eliminar(diagnostico) {
             var opcion= "Seguro que quiere eliminar?";
                 if (opcion==true) {
