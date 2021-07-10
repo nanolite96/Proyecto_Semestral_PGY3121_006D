@@ -2,14 +2,14 @@ from django.db import models
 
 # Create your models here.
 class mecanico (models.Model):
-    nombre_mec = models.CharField(primary_key=True,max_length=10)
+    nombre_mec = models.CharField(primary_key=True,max_length=30)
 
     def __str__(self):
         return self.nombre_mec
 
 class Trabajos (models.Model):
     codigo = models.AutoField(primary_key=True)
-    diagnostico = models.CharField(max_length=20)
+    diagnostico = models.CharField(max_length=50)
     nombre = models.ForeignKey(mecanico,on_delete=models.CASCADE)
     fecha = models.TextField()
     materiales = models.TextField()

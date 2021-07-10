@@ -70,27 +70,27 @@
                             minlength="3" maxlength="50" pattern="[A-Za-z ]{3,50}"
                             title="solo ingrese texto minimo 3 y maximo 50 caracteres">
                     </div>
-                    <div class="=col-12">
+                    <div class="=col-12" >
                         <h4>Nombre :</h4>
-                        <input type="text" id="txtnombre" name="txtnombre" placeholder="Liste aquí su trabajo" required
-                            minlength="3" maxlength="50" pattern="[A-Za-z ]{3,50}"
-                            title="solo ingrese texto minimo 3 y maximo 50 caracteres">
+                        <select id="cbonombre" name="cbonombre">
+                        {% for item in Mecanicos %}
+                            <option>{{item.Nombre}}</option>
+                        {% endfor %}
                     </div>
                     <div class="=col-12">
-                        <h4>fecha :</h4>
-                        <input type="text" id="txtfecha" name="txtfecha" placeholder="Liste aquí su trabajo" required
-                            minlength="3" maxlength="8" pattern="[A-Za-z ]{3,50}"
-                            title="solo ingrese texto entre 3 y 8 caracteres">
+                        <h4>Fecha :</h4>
+                        <input type="text" id="txtfecha" name="txtfecha" placeholder="Ponga la fecha de trabajo" required
+                            minlength="3" maxlength="50"
+                            title="solo ingrese texto entre 3 y 50 caracteres">
                     </div>
                     <div class="=col-12">
                         <h4>Materiales :</h4>
-                        <textarea name="txtmate" id="txtmate" cols="30" rows="6"
+                        <textarea name="txtmate" id="txtmate" cols="60" rows="6"
                             placeholder="Escriba los materiales usados"></textarea>
                     </div><div class="=col-12">
                         <h4>Descripcion :</h4>
-                        <input type="text" id="txtdescripcion" name="txtdescripcion" placeholder="Describa el trabajo realizado" required
-                            minlength="3" maxlength="50" pattern="[A-Za-z ]{3,50}"
-                            title="solo ingrese texto minimo 3 y maximo 50 caracteres">
+                        <textarea type="text" id="txtdescripcion" cols="60" rows="6" name="txtdescripcion" placeholder="Describa el trabajo realizado" 
+                        required pattern="[A-Za-z ]{3,50}" title="solo ingrese texto minimo 3 y maximo 50 caracteres"></textarea>
                     </div>
                     <div class="=col-12">
                         <h4>Imagen :</h4>

@@ -57,19 +57,21 @@ def validar(request):
 @permission_required('webRayoMakween.add_trabajos')
 def regitra(request):
     mensaje = ""
-    trabajos = Trabajos.objects.filter(publicar=True)
+    Mecanicos = mecanico.objects.all()
+    contexto = {"Mecanicos":Mecanicos}
+    trabajos = Trabajos.objects.all()
     contexto = {"Trabajos":trabajos}
     if request.POST:
         diagnostico = request.POST.get("txtdiag")
-        nombre = request.objects.get("txtnombre")
+        nombre = request.POST.get("cbonombre")
         fecha = request.POST.get("txtfecha")
         materiales = request.POST.get("txtmate")
         descripcion = request.POST.get("txtdescripcion")
         imagen= request.FILES.get("txtimagen")
-
+        obj_nombre=request.objects.get(nombre_mec=nombre)
         tra = trabajos(
             diagnostico=diagnostico,
-            nombre=nombre,
+            nombre=obj_nombre,
             fecha=fecha,
             materiales=materiales,
             descripcion=descripcion,
@@ -148,11 +150,13 @@ def buscar_modificar(request, id):
     return render(request,"validar_post.html",contexto)
 
 def modificar(request):
+    Mecanicos = mecanico.objects.all()
+    contexto = {"Mecanicos":Mecanicos}
     trabajos=Trabajos.objects.all()
     mensaje=""
     if request.POST:
         diagnostico = request.POST.get("txtdiag")
-        nombre = request.objects.get("txtnombre")
+        nombre = request.objects.get(nombre_mec=Mecanicos)
         fecha = request.POST.get("txtfecha")
         materiales = request.POST.get("txtmate")
         descripcion = request.POST.get("txtdescripcion")

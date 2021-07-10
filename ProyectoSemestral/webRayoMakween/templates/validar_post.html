@@ -72,7 +72,7 @@
                     <th>Imagen</th>
                     <th>Comentario</th>
                 </tr>     
-            {% for reg in trabajos %}
+            {% for reg in contexto %}
                 <tr>
                     <td>
                         {{reg.diagnostico}}
@@ -94,15 +94,12 @@
                         {{reg.descripcion}}
                     </td>
                     <td>
-                        {%if reg.imagen%}
+                        {% if reg.imagen %}
                         <img src="{{reg.imagen.url}}" alt="imgnula" width="50" height="50">
                         {% endif %}
                     </td>
                     <td>
                         {{reg.comentario}}
-                    </td>
-                    <td>
-                        <button class= "btn btn-warning">Modificar</button>
                     </td>
                     <td>
                         <button class= "btn btn-warning" onclick="modificar('{{reg.diagnostico}}')">Modificar</button>
