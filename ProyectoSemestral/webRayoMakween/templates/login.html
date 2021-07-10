@@ -25,16 +25,20 @@
         <div class="cabezon">
             <nav>
                 <label class="img1" for="menu-bar"><img src="{% static 'Img/logomcqueen.png' %}" width="95px" height="80"></label>
-
                 <input type="checkbox" name="" id="menu-bar">
                 <a href="{% url 'INDEX' %}">Inicio</a>
                 <a href="{% url 'ATENCION' %}">Atencion</a>
                 <a href="{% url 'CONTACTO' %}">Formulario</a>
                 <a href="{% url 'REGISTRO' %}">Registro</a>
-                <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
                 <a href="{% url 'REGITRA' %}">Registro Atencion</a>
                 <a href="{% url 'TRABAJO' %}">Lista de trabajos</a>
-                <a href="{% url 'VALIDAR' %}">Validar Post</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'VALIDAR' %}">Validar Post</a>
+                    <a href="{% url 'CERRAR' %}">Cerrar Sesión</a>
+                    <a href="">Bienvenido: {{user.first_name}}</a>
+                {% else %}
+                    <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
+                {% endif %}
             </nav>
             <p class="buscador">
             <form action="{% url 'TRABAJO' %}" method="POST">

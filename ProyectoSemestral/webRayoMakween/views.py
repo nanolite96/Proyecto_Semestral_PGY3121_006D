@@ -188,3 +188,7 @@ def modificar(request):
 
     contexto = {"mensaje":mensaje}
     return render(request,"validar_post.html",contexto)
+
+def cerrar_sesion(request):
+    logout(request)
+    return render(request,"index.html")
