@@ -30,7 +30,6 @@
                 <a href="{% url 'INDEX' %}">Inicio</a>
                 <a href="{% url 'ATENCION' %}">Atencion</a>
                 <a href="{% url 'CONTACTO' %}">Formulario</a>
-                <a href="{% url 'REGISTRO' %}">Registro</a>
                 <a href="{% url 'REGITRA' %}">Registro Atencion</a>
                 <a href="{% url 'TRABAJO' %}">Lista de trabajos</a>
                 {% if user.is_authenticated %}
@@ -38,6 +37,7 @@
                     <a href="{% url 'CERRAR' %}">Cerrar Sesión</a>
                     <a href="">Bienvenido: {{user.first_name}}</a>
                 {% else %}
+                    <a href="{% url 'REGISTRO' %}">Registro</a>
                     <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
                 {% endif %}
             </nav>
